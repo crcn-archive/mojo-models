@@ -20,7 +20,7 @@ describe("model#", function () {
   });
 
   it("deserializes data from the constructor", function () {
-    
+
     var Model = models.Base.extend({
       deserialize: function (data) {
         return {
@@ -32,4 +32,33 @@ describe("model#", function () {
     var model = new Model({ data: {name: "a"} }, app);
     expect(model.get("name")).to.be("A");
   });
+
+  it("calls deserialize when 'data' changes", function () {
+    var Model = models.Base.extend({
+      deserialize: function (data) {
+        return {
+          name: data.name.toUpperCase()
+        }
+      }
+    });
+
+    var model = new Model({ data: {name: "a"} }, app);
+    expect(model.get("name")).to.be("A");
+    model.set("data", { name: "B" });
+    expect(model.get("name")).to.be("B");
+  });
+
+  it("properly serializes data", function () {
+    var Model = models.Base.extend({
+      deserialize: function (data) {
+        return {
+          name: data.name.toUpperCase()
+        }
+      }
+    });
+
+    var model = new Model({ data: {name: "a"} }, app);
+    expect(model.serialize().name).to.be("A");
+  })
+
 });

@@ -2,7 +2,7 @@ var models  = require(".."),
 Application = require("mojo-application"),
 expect      = require("expect.js");
 
-describe("model#", function () {
+describe("model-virtuals#", function () {
 
   var app = new Application();
   app.use(models);
@@ -135,7 +135,7 @@ describe("model#", function () {
       },
       load: function (complete) {
         i++;
-        complete();
+        complete(new Error("fail"));
       }
     }); 
 
@@ -147,6 +147,18 @@ describe("model#", function () {
     model.bind("name", function(){}).now();
     expect(i).to.be(2);
   });
+
+  it("doesn't call load on a model if it doesn't exist", function () {
+    var Model = models.Base.extend({
+      virtuals: {
+      }
+    }); 
+
+
+    app.models.register("model", Model);
+    var model = app.models.create("model");
+    model.bind("name", function(){}).now();
+  })
 
 
 
