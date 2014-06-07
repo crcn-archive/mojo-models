@@ -1,3 +1,5 @@
+## Mojo Models [![Build Status](https://travis-ci.org/classdojo/mojo-models.svg)](https://travis-ci.org/classdojo/mojo-models)
+
 ```javascript
 var models = require("mojo-models");
 
