@@ -17,6 +17,19 @@ describe("model-load#", function () {
     m.load();
   });
 
+  it("returns an error if a model can't be loaded", function (next) {
+    var Model = models.Base.extend({
+      update: function () {
+      }
+    });
+
+    var m = new Model({}, app);
+    m.load(function (err) {
+      expect(err.message).to.be("cannot load model");
+      next();
+    });
+  });
+
   it("properly sets the data from .load() on the model", function (next) {
 
     var Model = models.Base.extend({
