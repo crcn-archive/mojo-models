@@ -1,0 +1,30 @@
+{
+  "name": "mojo-models",
+  "version": "0.0.0",
+  "description": "mojo-models ===========",
+  "main": "./lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/classdojo/mojo-models"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/classdojo/mojo-models/issues"
+  },
+  "homepage": "https://github.com/classdojo/mojo-models",
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "mocha": "^1.20.1",
+    "mojo-application": "0.0.8"
+  },
+  "dependencies": {
+    "bindable": "^0.5.37",
+    "frills": "0.0.2",
+    "mojo-registered-classes": "0.0.1",
+    "lodash": "^2.4.1"
+  }
+}
