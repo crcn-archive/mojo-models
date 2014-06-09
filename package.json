@@ -1,6 +1,6 @@
 {
   "name": "mojo-models",
-  "version": "0.0.8",
+  "version": "0.0.10",
   "description": "mojo-models ===========",
   "main": "./lib/index.js",
   "scripts": {

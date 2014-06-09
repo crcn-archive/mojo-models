@@ -155,5 +155,28 @@ describe("collection#", function () {
     expect(c.length).to.be(1);
     m.dispose();
     expect(c.length).to.be(0);
-  })
+  });
+
+  it("can create a model from modelType string", function () {
+
+    var Model = models.Base.extend();
+
+    app.models.register("someModel", Model);
+    var c = new models.Collection({
+      modelType: "someModel"
+    }, app);
+    expect(c.create().constructor).to.be(Model);
+  });
+
+  it("can create a model from modelType class", function () {
+
+    var Model = models.Base.extend();
+
+    var c = new models.Collection({
+      modelType: Model
+    }, app);
+    expect(c.create().constructor).to.be(Model);
+  });
+
+
 });
