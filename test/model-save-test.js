@@ -9,7 +9,9 @@ describe("model-save#", function () {
 
   it("can call save on a model when update is defined", function () {
     var Model = models.Base.extend({
-      update: function () {
+      persist: {
+        update: function () {
+        }
       }
     });
 
@@ -19,7 +21,9 @@ describe("model-save#", function () {
 
   it("can call save on a model when create is defined", function () {
     var Model = models.Base.extend({
-      create: function () {
+      persist: {
+        create: function () {
+        }
       }
     });
 
@@ -29,7 +33,9 @@ describe("model-save#", function () {
 
   it("returns an error for a model that cannot be updated ", function (next) {
     var Model = models.Base.extend({
-      create: function () {
+      persist: {
+        create: function () {
+        }
       }
     });
 
@@ -42,7 +48,9 @@ describe("model-save#", function () {
 
   it("returns an error for a model that cannot be created", function (next) {
     var Model = models.Base.extend({
-      update: function () {
+      persist: {
+        update: function () {
+        }
       }
     });
 
@@ -56,8 +64,10 @@ describe("model-save#", function () {
 
   it("calls .create() when data is not defined", function (next) {
     var Model = models.Base.extend({
-      create: function () {
-        next();
+      persist: {
+        create: function () {
+          next();
+        }
       }
     });
 
@@ -67,8 +77,10 @@ describe("model-save#", function () {
 
   it("calls .update() when data is defined", function (next) {
     var Model = models.Base.extend({
-      update: function () {
-        next();
+      persist: {
+        update: function () {
+          next();
+        }
       }
     });
 
@@ -78,8 +90,10 @@ describe("model-save#", function () {
 
   it("sets data when .create() calls successfuly", function (next) {
     var Model = models.Base.extend({
-      create: function (complete) {
-        complete(null, { name: "abba"});
+      persist: {
+        create: function (complete) {
+          complete(null, { name: "abba"});
+        }
       }
     });
 
@@ -92,14 +106,60 @@ describe("model-save#", function () {
 
   it("doesn't set data when .update() calls successfuly", function (next) {
     var Model = models.Base.extend({
-      update: function (complete) {
-        complete(null, { name: "abba"});
+      persist: {
+        update: function (complete) {
+          complete(null, { name: "abba"});
+        }
       }
     });
 
     var m = new Model({data:{}}, app);
     m.save(function () {
       expect(m.name).to.be(undefined);
+      next();
+    });
+  });
+
+  it("emits 'save' after running update", function (next) {
+    var Model = models.Base.extend({
+      persist: {
+        update: function (complete) {
+          complete(null, { name: "abba"});
+        }
+      }
+    });
+
+    var m = new Model({data:{}}, app);
+    m.once("save", next);
+    m.save();
+  });
+
+  it("emits 'save' after running create", function (next) {
+    var Model = models.Base.extend({
+      persist: {
+        create: function (complete) {
+          complete(null, { name: "abba"});
+        }
+      }
+    });
+
+    var m = new Model({data:null}, app);
+    m.once("save", next);
+    m.save();
+  });
+
+  it("returns model on save", function (next) {
+    var Model = models.Base.extend({
+      persist: {
+        create: function (complete) {
+          complete(null, { name: "abba"});
+        }
+      }
+    });
+
+    var m = new Model({data:null}, app);
+    m.save(function (err, m2) {
+      expect(m).to.be(m2);
       next();
     });
   });

@@ -59,6 +59,14 @@ describe("model#", function () {
 
     var model = new Model({ data: {name: "a"} }, app);
     expect(model.serialize().name).to.be("A");
-  })
+  });
+
+  it("sets the value property if data is not an object", function () {
+    var model = new models.Base({
+      data: 5
+    }, app);
+    expect(model.value).to.be(5);
+    expect(model.data).to.be(5);
+  });
 
 });

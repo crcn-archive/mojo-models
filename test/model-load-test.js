@@ -9,7 +9,8 @@ describe("model-load#", function () {
 
   it("can call load on a model", function () {
     var Model = models.Base.extend({
-      read: function () {
+      persist: {
+        read: function(){}
       }
     });
 
@@ -19,7 +20,8 @@ describe("model-load#", function () {
 
   it("returns an error if a model can't be loaded", function (next) {
     var Model = models.Base.extend({
-      update: function () {
+      persist: {
+        update: function(){}
       }
     });
 
@@ -33,8 +35,10 @@ describe("model-load#", function () {
   it("properly sets the data from .load() on the model", function (next) {
 
     var Model = models.Base.extend({
-      read: function (complete) {
-        complete(null, { name: "a" });
+      persist: {
+        read: function (complete) {
+          complete(null, { name: "a" });
+        }
       }
     });
 
@@ -48,8 +52,10 @@ describe("model-load#", function () {
 
   it("deserializes data once it's been loaded", function (next) {
     var Model = models.Base.extend({
-      read: function (complete) {
-        complete(null, { name: "a" });
+      persist: {
+        read: function (complete) {
+          complete(null, { name: "a" });
+        },
       },
       deserialize: function (data) {
         return {
@@ -68,8 +74,10 @@ describe("model-load#", function () {
 
   it("can return an error", function (next) {
     var Model = models.Base.extend({
-      read: function (complete) {
-        complete(new Error("abba"));
+      persist: {
+        read: function (complete) {
+          complete(new Error("abba"));
+        }
       }
     });
 
@@ -83,9 +91,11 @@ describe("model-load#", function () {
   it("can reload a model that hasn't loaded properly", function (next) {
     var i = 0;
     var Model = models.Base.extend({
-      read: function (complete) {
-        i++;
-        complete(new Error("abba"));
+      persist: {
+        read: function (complete) {
+          i++;
+          complete(new Error("abba"));
+        }
       }
     });
 
@@ -98,6 +108,22 @@ describe("model-load#", function () {
           next();
         })
       })
+    });
+  });
+
+  it("returns model on load", function (next) {
+    var Model = models.Base.extend({
+      persist: {
+        read: function (complete) {
+          complete(null, { name: "abba"});
+        }
+      }
+    });
+
+    var m = new Model({data:{}}, app);
+    m.load(function (err, m2) {
+      expect(m).to.be(m2);
+      next();
     });
   });
 
