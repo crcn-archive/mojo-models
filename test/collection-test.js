@@ -42,8 +42,9 @@ describe("collection#", function () {
 
   it("can override the createModel method", function () {
     var c = new models.Collection({
-      createModel: function (data) {
-        return new models.Base({ data: data * 10 }, this.application);
+      createModel: function (options) {
+
+        return new models.Base({ data: options.data * 10 }, this.application);
       },
       data: [1, 2, 3]
     }, app);
@@ -137,8 +138,8 @@ describe("collection#", function () {
       }
     });
     var c = new models.Collection({
-      createModel: function (data) {
-        return new Model({ data: data }, this.application);
+      createModel: function (options) {
+        return new Model({ data: options.data }, this.application);
       }
     }, app);
 
