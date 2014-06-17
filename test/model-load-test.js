@@ -88,6 +88,40 @@ describe("model-load#", function () {
     });
   });
 
+  it("cannot load a model without an id property", function (next) {
+    var Model = models.Base.extend({
+      idProperty: "_id",
+      persist: {
+        read: function (complete) {
+          complete(new Error("abba"));
+        }
+      }
+    });
+
+    var m = new Model({}, app);
+    m.load(function (err) {
+      expect(err.message).to.be("cannot load a model without _id");
+      next();
+    });
+  });
+
+  it("can load a model with an id properly", function (next) {
+    var Model = models.Base.extend({
+      idProperty: "_id",
+      persist: {
+        read: function (complete) {
+          complete();
+        }
+      }
+    });
+
+    var m = new Model({_id: "abba"}, app);
+    m.load(function (err) {
+      expect(err).to.be(null);
+      next();
+    });
+  });
+
   it("can reload a model that hasn't loaded properly", function (next) {
     var i = 0;
     var Model = models.Base.extend({
