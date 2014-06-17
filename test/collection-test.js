@@ -180,4 +180,23 @@ describe("collection#", function () {
   });
 
 
+  it("calls dispose on models that aren't part of the collection anymore", function () {
+    var c = new models.Collection({ data: [0,1,2,3]}, app);
+    var m1 = c.at(0), m2 = c.at(1), i = 0;
+
+    m1.on("dispose", function () {
+      i++;
+    });
+
+    m2.on("dispose", function () {
+      i++;
+    });
+
+    c.set("data", [2, 3])
+
+    expect(i).to.be(2);
+
+  })
+
+
 });
