@@ -69,4 +69,15 @@ describe("model#", function () {
     expect(model.data).to.be(5);
   });
 
+  it("can access a property sent to the constructor before accessing deserialize", function (next) {
+    var Model = models.Base.extend({
+      deserialize: function (data) {
+        expect(this.name).to.be('abba');
+        next();
+      }
+    });
+
+    new Model({data: "blarg",  name: "abba" }, app);
+  })
+
 });
