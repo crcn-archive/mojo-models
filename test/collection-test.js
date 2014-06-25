@@ -132,7 +132,7 @@ describe("collection#", function () {
   it("can create a model, and push only after saving the model", function () {
     var Model = models.Base.extend({
       persist: {
-        create: function (complete) {
+        save: function (complete) {
           complete(null, { _id: "blah" });
         }
       }
