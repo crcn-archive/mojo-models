@@ -61,6 +61,11 @@ describe("model#", function () {
     expect(model.serialize().name).to.be("A");
   });
 
+  it("serializes the model properties if data is absent", function () {
+    var model = new models.Base({_id: "abba"}, app);
+    expect(model.serialize()._id).to.be("abba");
+  })
+
   it("sets the value property if data is not an object", function () {
     var model = new models.Base({
       data: 5
