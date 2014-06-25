@@ -10,7 +10,7 @@ describe("model-remove#", function () {
   it("can call remove on a model", function () {
     var Model = models.Base.extend({
       persist: {
-        del: function () {
+        remove: function () {
         }
       }
     });
@@ -22,7 +22,7 @@ describe("model-remove#", function () {
   it("returns an error if a model can't be removed", function (next) {
     var Model = models.Base.extend({
       persist: {
-        read: function () {
+        load: function () {
         }
       }
     });
@@ -34,25 +34,10 @@ describe("model-remove#", function () {
     });
   });
 
-  it("returns an error if a model doesn't have data", function (next) {
-    var Model = models.Base.extend({
-      persist: {
-        del: function () {
-        }
-      }
-    });
-
-    var m = new Model({}, app);
-    m.remove(function (err) {
-      expect(err.message).to.be("cannot remove model without data");
-      next();
-    });
-  });
-
   it("can properly call .del() on a model", function (next) {
     var Model = models.Base.extend({
       persist: {
-        del: function (complete) {
+        remove: function (complete) {
           next();
         }
       }
@@ -65,7 +50,7 @@ describe("model-remove#", function () {
   it("returns reference of model removed on remove", function (next) {
     var Model = models.Base.extend({
       persist: {
-        del: function (complete) {
+        remove: function (complete) {
           complete();
         }
       }
@@ -81,7 +66,7 @@ describe("model-remove#", function () {
   it("emits 'remove' after a model is removed", function (next) {
     var Model = models.Base.extend({
       persist: {
-        del: function (complete) {
+        remove: function (complete) {
           complete();
         }
       }
@@ -95,7 +80,7 @@ describe("model-remove#", function () {
   it("emits 'dispose' after a model is removed", function (next) {
     var Model = models.Base.extend({
       persist: {
-        del: function (complete) {
+        remove: function (complete) {
           complete();
         }
       }

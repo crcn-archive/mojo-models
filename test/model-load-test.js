@@ -10,7 +10,7 @@ describe("model-load#", function () {
   it("can call load on a model", function () {
     var Model = models.Base.extend({
       persist: {
-        read: function(){}
+        load: function(){}
       }
     });
 
@@ -18,7 +18,7 @@ describe("model-load#", function () {
     m.load();
   });
 
-  it("returns an error if a model can't be loaded", function (next) {
+  it("returns an error if a model id .load() isn't defined in persist", function (next) {
     var Model = models.Base.extend({
       persist: {
         update: function(){}
@@ -32,17 +32,18 @@ describe("model-load#", function () {
     });
   });
 
+
   it("properly sets the data from .load() on the model", function (next) {
 
     var Model = models.Base.extend({
       persist: {
-        read: function (complete) {
+        load: function (complete) {
           complete(null, { name: "a" });
         }
       }
     });
 
-    var m = new Model(null, app);
+    var m = new Model({ _id: "abba" }, app);
     m.load(function () {
       expect(m.get("name")).to.be("a");
       expect(m.get("data.name")).to.be("a");
@@ -53,7 +54,7 @@ describe("model-load#", function () {
   it("deserializes data once it's been loaded", function (next) {
     var Model = models.Base.extend({
       persist: {
-        read: function (complete) {
+        load: function (complete) {
           complete(null, { name: "a" });
         },
       },
@@ -64,7 +65,7 @@ describe("model-load#", function () {
       }
     });
 
-    var m = new Model(null, app);
+    var m = new Model({_id:"abba"}, app);
     m.load(function () {
       expect(m.get("name")).to.be("A");
       expect(m.get("data.name")).to.be("a");
@@ -75,49 +76,15 @@ describe("model-load#", function () {
   it("can return an error", function (next) {
     var Model = models.Base.extend({
       persist: {
-        read: function (complete) {
+        load: function (complete) {
           complete(new Error("abba"));
         }
       }
     });
 
-    var m = new Model(null, app);
+    var m = new Model({_id:"abba"}, app);
     m.load(function (err) {
       expect(err.message).to.be("abba");
-      next();
-    });
-  });
-
-  it("cannot load a model without an id property", function (next) {
-    var Model = models.Base.extend({
-      idProperty: "_id",
-      persist: {
-        read: function (complete) {
-          complete(new Error("abba"));
-        }
-      }
-    });
-
-    var m = new Model({}, app);
-    m.load(function (err) {
-      expect(err.message).to.be("cannot load a model without _id");
-      next();
-    });
-  });
-
-  it("can load a model with an id properly", function (next) {
-    var Model = models.Base.extend({
-      idProperty: "_id",
-      persist: {
-        read: function (complete) {
-          complete();
-        }
-      }
-    });
-
-    var m = new Model({_id: "abba"}, app);
-    m.load(function (err) {
-      expect(err).to.be(null);
       next();
     });
   });
@@ -126,14 +93,14 @@ describe("model-load#", function () {
     var i = 0;
     var Model = models.Base.extend({
       persist: {
-        read: function (complete) {
+        load: function (complete) {
           i++;
           complete(new Error("abba"));
         }
       }
     });
 
-    var m = new Model(null, app);
+    var m = new Model({_id:"abba"}, app);
     m.load(function (err) {
       expect(i).to.be(1);
       process.nextTick(function () {
@@ -148,13 +115,13 @@ describe("model-load#", function () {
   it("returns model on load", function (next) {
     var Model = models.Base.extend({
       persist: {
-        read: function (complete) {
+        load: function (complete) {
           complete(null, { name: "abba"});
         }
       }
     });
 
-    var m = new Model({data:{}}, app);
+    var m = new Model({_id:"abba"}, app);
     m.load(function (err, m2) {
       expect(m).to.be(m2);
       next();

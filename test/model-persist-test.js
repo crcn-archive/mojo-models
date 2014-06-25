@@ -2,7 +2,7 @@ var models  = require(".."),
 Application = require("mojo-application"),
 expect      = require("expect.js");
 
-describe("model-load#", function () {
+describe("model-persist#", function () {
 
   var app = new Application();
   app.use(models);
@@ -27,7 +27,7 @@ describe("model-load#", function () {
           expect(this).to.be(m);
           i++;
         },
-        read: function () {
+        load: function () {
           expect(this).to.be(m);
           i++;
         },
@@ -35,7 +35,7 @@ describe("model-load#", function () {
           expect(this).to.be(m);
           i++;
         },
-        del: function () {
+        remove: function () {
           expect(this).to.be(m);
           i++;
         }
@@ -45,7 +45,7 @@ describe("model-load#", function () {
     m = new Model({}, app);
     m.load();
     m.save();
-    m.set("data", {});
+    m.set("_id", "abba");
     m.save();
     m.remove();
     expect(i).to.be(4);
