@@ -62,8 +62,21 @@ describe("model-remove#", function () {
       next();
     });
   });
+  it("emits 'willRemove' before running save", function (next) {
+    var Model = models.Base.extend({
+      persist: {
+        remove: function (complete) {
+          complete(null, { name: "abba"});
+        }
+      }
+    });
 
-  it("emits 'remove' after a model is removed", function (next) {
+    var m = new Model({data:{}}, app);
+    m.once("willRemove", next);
+    m.remove();
+  });
+
+  it("emits 'didRemove' after a model is removed", function (next) {
     var Model = models.Base.extend({
       persist: {
         remove: function (complete) {
@@ -73,7 +86,7 @@ describe("model-remove#", function () {
     });
 
     var m = new Model({data:1}, app);
-    m.once("remove", next);
+    m.once("didRemove", next);
     m.remove();
   });
 

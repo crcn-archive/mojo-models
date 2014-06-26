@@ -79,8 +79,7 @@ describe("model-save#", function () {
     });
   });
 
-
-  it("emits 'save' after running save", function (next) {
+  it("emits 'willSave' before running save", function (next) {
     var Model = models.Base.extend({
       persist: {
         save: function (complete) {
@@ -90,9 +89,25 @@ describe("model-save#", function () {
     });
 
     var m = new Model({data:{}}, app);
-    m.once("save", next);
+    m.once("willSave", next);
     m.save();
   });
+
+
+  it("emits 'didSave' after running save", function (next) {
+    var Model = models.Base.extend({
+      persist: {
+        save: function (complete) {
+          complete(null, { name: "abba"});
+        }
+      }
+    });
+
+    var m = new Model({data:{}}, app);
+    m.once("didSave", next);
+    m.save();
+  });
+
 
 
   it("can save if the callback is an object", function () {
