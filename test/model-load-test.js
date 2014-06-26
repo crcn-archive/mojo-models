@@ -73,6 +73,19 @@ describe("model-load#", function () {
     });
   });
 
+  it("can load if the callback is an object", function () {
+    var Model = models.Base.extend({
+      persist: {
+        load: function (complete) {
+          complete(null, { name: "abba"});
+        }
+      }
+    });
+
+    var m = new Model({data:{}}, app);
+    m.load({});
+  });
+
   it("can return an error", function (next) {
     var Model = models.Base.extend({
       persist: {

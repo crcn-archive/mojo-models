@@ -77,6 +77,19 @@ describe("model-remove#", function () {
     m.remove();
   });
 
+  it("can remove if the callback is an object", function () {
+    var Model = models.Base.extend({
+      persist: {
+        remove: function (complete) {
+          complete(null, { name: "abba"});
+        }
+      }
+    });
+
+    var m = new Model({data:{}}, app);
+    m.remove({});
+  });
+
   it("emits 'dispose' after a model is removed", function (next) {
     var Model = models.Base.extend({
       persist: {

@@ -95,6 +95,20 @@ describe("model-save#", function () {
   });
 
 
+  it("can save if the callback is an object", function () {
+    var Model = models.Base.extend({
+      persist: {
+        save: function (complete) {
+          complete(null, { name: "abba"});
+        }
+      }
+    });
+
+    var m = new Model({data:{}}, app);
+    m.save({});
+  });
+
+
   it("returns model on save", function (next) {
     var Model = models.Base.extend({
       persist: {
