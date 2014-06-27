@@ -33,6 +33,24 @@ describe("model#", function () {
     expect(model.get("name")).to.be("A");
   });
 
+  it("deserializes data from the constructor", function () {
+
+    var i = 0;
+
+    var Model = models.Base.extend({
+      deserialize: function (data) {
+        i++;
+        data.abba = 123;
+      }
+    });
+
+    var model = new Model({ data: false }, app);
+    model.set("data", 0);
+    model.set("data", void 0)
+    model.set("data", {});
+    expect(i).to.be(1);
+  });
+
   it("calls deserialize when 'data' changes", function () {
     var Model = models.Base.extend({
       deserialize: function (data) {
