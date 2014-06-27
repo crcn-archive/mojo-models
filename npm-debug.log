@@ -1,0 +1,173 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@1.4.3
+3 info using node@v0.10.26
+4 verbose publish [ '.' ]
+5 verbose cache add [ '.', null ]
+6 verbose cache add name=undefined spec="." args=[".",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: '.',
+7 verbose parsed url   path: '.',
+7 verbose parsed url   href: '.' }
+8 silly lockFile 3a52ce78- .
+9 verbose lock . /Users/craig/.npm/3a52ce78-.lock
+10 verbose tar pack [ '/var/folders/n1/r96x64mx6jzcbzkbz1ddrw6r0000gn/T/npm-47017-c0gdZUik/1403842172358-0.3210612500552088/tmp.tgz',
+10 verbose tar pack   '.' ]
+11 verbose tarball /var/folders/n1/r96x64mx6jzcbzkbz1ddrw6r0000gn/T/npm-47017-c0gdZUik/1403842172358-0.3210612500552088/tmp.tgz
+12 verbose folder .
+13 info prepublish mojo-models@0.1.6
+14 silly lockFile 1f1177db-tar tar://.
+15 verbose lock tar://. /Users/craig/.npm/1f1177db-tar.lock
+16 silly lockFile 9e54a5e6-72358-0-3210612500552088-tmp-tgz tar:///var/folders/n1/r96x64mx6jzcbzkbz1ddrw6r0000gn/T/npm-47017-c0gdZUik/1403842172358-0.3210612500552088/tmp.tgz
+17 verbose lock tar:///var/folders/n1/r96x64mx6jzcbzkbz1ddrw6r0000gn/T/npm-47017-c0gdZUik/1403842172358-0.3210612500552088/tmp.tgz /Users/craig/.npm/9e54a5e6-72358-0-3210612500552088-tmp-tgz.lock
+18 silly lockFile 1f1177db-tar tar://.
+19 silly lockFile 1f1177db-tar tar://.
+20 silly lockFile 9e54a5e6-72358-0-3210612500552088-tmp-tgz tar:///var/folders/n1/r96x64mx6jzcbzkbz1ddrw6r0000gn/T/npm-47017-c0gdZUik/1403842172358-0.3210612500552088/tmp.tgz
+21 silly lockFile 9e54a5e6-72358-0-3210612500552088-tmp-tgz tar:///var/folders/n1/r96x64mx6jzcbzkbz1ddrw6r0000gn/T/npm-47017-c0gdZUik/1403842172358-0.3210612500552088/tmp.tgz
+22 verbose tar unpack /var/folders/n1/r96x64mx6jzcbzkbz1ddrw6r0000gn/T/npm-47017-c0gdZUik/1403842172358-0.3210612500552088/tmp.tgz
+23 silly lockFile 3900c69d-72358-0-3210612500552088-package tar:///var/folders/n1/r96x64mx6jzcbzkbz1ddrw6r0000gn/T/npm-47017-c0gdZUik/1403842172358-0.3210612500552088/package
+24 verbose lock tar:///var/folders/n1/r96x64mx6jzcbzkbz1ddrw6r0000gn/T/npm-47017-c0gdZUik/1403842172358-0.3210612500552088/package /Users/craig/.npm/3900c69d-72358-0-3210612500552088-package.lock
+25 silly lockFile 9e54a5e6-72358-0-3210612500552088-tmp-tgz tar:///var/folders/n1/r96x64mx6jzcbzkbz1ddrw6r0000gn/T/npm-47017-c0gdZUik/1403842172358-0.3210612500552088/tmp.tgz
+26 verbose lock tar:///var/folders/n1/r96x64mx6jzcbzkbz1ddrw6r0000gn/T/npm-47017-c0gdZUik/1403842172358-0.3210612500552088/tmp.tgz /Users/craig/.npm/9e54a5e6-72358-0-3210612500552088-tmp-tgz.lock
+27 silly gunzTarPerm modes [ '755', '644' ]
+28 silly gunzTarPerm extractEntry package.json
+29 silly gunzTarPerm extractEntry .npmignore
+30 silly gunzTarPerm extractEntry README.md
+31 silly gunzTarPerm extractEntry .travis.yml
+32 silly gunzTarPerm extractEntry benchmark/index.js
+33 silly gunzTarPerm extractEntry lib/index.js
+34 silly gunzTarPerm extractEntry lib/base/collection.js
+35 silly gunzTarPerm extractEntry lib/base/model.js
+36 silly gunzTarPerm extractEntry lib/decor/crud.js
+37 silly gunzTarPerm extractEntry lib/decor/index.js
+38 silly gunzTarPerm extractEntry lib/decor/virtuals.js
+39 silly gunzTarPerm extractEntry lib/decor/utils/memoize.js
+40 silly gunzTarPerm extractEntry makefile
+41 silly gunzTarPerm extractEntry test/bindings-test.js
+42 silly gunzTarPerm extractEntry test/collection-crud-test.js
+43 silly gunzTarPerm extractEntry test/collection-test.js
+44 silly gunzTarPerm extractEntry test/model-load-test.js
+45 silly gunzTarPerm extractEntry test/model-persist-test.js
+46 silly gunzTarPerm extractEntry test/model-remove-test.js
+47 silly gunzTarPerm extractEntry test/model-save-test.js
+48 silly gunzTarPerm extractEntry test/model-test.js
+49 silly gunzTarPerm extractEntry test/model-virtuals-test.js
+50 silly lockFile 3900c69d-72358-0-3210612500552088-package tar:///var/folders/n1/r96x64mx6jzcbzkbz1ddrw6r0000gn/T/npm-47017-c0gdZUik/1403842172358-0.3210612500552088/package
+51 silly lockFile 3900c69d-72358-0-3210612500552088-package tar:///var/folders/n1/r96x64mx6jzcbzkbz1ddrw6r0000gn/T/npm-47017-c0gdZUik/1403842172358-0.3210612500552088/package
+52 silly lockFile 9e54a5e6-72358-0-3210612500552088-tmp-tgz tar:///var/folders/n1/r96x64mx6jzcbzkbz1ddrw6r0000gn/T/npm-47017-c0gdZUik/1403842172358-0.3210612500552088/tmp.tgz
+53 silly lockFile 9e54a5e6-72358-0-3210612500552088-tmp-tgz tar:///var/folders/n1/r96x64mx6jzcbzkbz1ddrw6r0000gn/T/npm-47017-c0gdZUik/1403842172358-0.3210612500552088/tmp.tgz
+54 verbose tar pack [ '/Users/craig/.npm/mojo-models/0.1.6/package.tgz',
+54 verbose tar pack   '/var/folders/n1/r96x64mx6jzcbzkbz1ddrw6r0000gn/T/npm-47017-c0gdZUik/1403842172358-0.3210612500552088/package' ]
+55 verbose tarball /Users/craig/.npm/mojo-models/0.1.6/package.tgz
+56 verbose folder /var/folders/n1/r96x64mx6jzcbzkbz1ddrw6r0000gn/T/npm-47017-c0gdZUik/1403842172358-0.3210612500552088/package
+57 silly lockFile 3900c69d-72358-0-3210612500552088-package tar:///var/folders/n1/r96x64mx6jzcbzkbz1ddrw6r0000gn/T/npm-47017-c0gdZUik/1403842172358-0.3210612500552088/package
+58 verbose lock tar:///var/folders/n1/r96x64mx6jzcbzkbz1ddrw6r0000gn/T/npm-47017-c0gdZUik/1403842172358-0.3210612500552088/package /Users/craig/.npm/3900c69d-72358-0-3210612500552088-package.lock
+59 silly lockFile 5c0a6143-pm-mojo-models-0-1-6-package-tgz tar:///Users/craig/.npm/mojo-models/0.1.6/package.tgz
+60 verbose lock tar:///Users/craig/.npm/mojo-models/0.1.6/package.tgz /Users/craig/.npm/5c0a6143-pm-mojo-models-0-1-6-package-tgz.lock
+61 silly lockFile 3900c69d-72358-0-3210612500552088-package tar:///var/folders/n1/r96x64mx6jzcbzkbz1ddrw6r0000gn/T/npm-47017-c0gdZUik/1403842172358-0.3210612500552088/package
+62 silly lockFile 3900c69d-72358-0-3210612500552088-package tar:///var/folders/n1/r96x64mx6jzcbzkbz1ddrw6r0000gn/T/npm-47017-c0gdZUik/1403842172358-0.3210612500552088/package
+63 silly lockFile 5c0a6143-pm-mojo-models-0-1-6-package-tgz tar:///Users/craig/.npm/mojo-models/0.1.6/package.tgz
+64 silly lockFile 5c0a6143-pm-mojo-models-0-1-6-package-tgz tar:///Users/craig/.npm/mojo-models/0.1.6/package.tgz
+65 silly lockFile 449231de-ig-npm-mojo-models-0-1-6-package /Users/craig/.npm/mojo-models/0.1.6/package
+66 verbose lock /Users/craig/.npm/mojo-models/0.1.6/package /Users/craig/.npm/449231de-ig-npm-mojo-models-0-1-6-package.lock
+67 silly lockFile 449231de-ig-npm-mojo-models-0-1-6-package /Users/craig/.npm/mojo-models/0.1.6/package
+68 silly lockFile 449231de-ig-npm-mojo-models-0-1-6-package /Users/craig/.npm/mojo-models/0.1.6/package
+69 verbose tar unpack /Users/craig/.npm/mojo-models/0.1.6/package.tgz
+70 silly lockFile c86a130a-ig-npm-mojo-models-0-1-6-package tar:///Users/craig/.npm/mojo-models/0.1.6/package
+71 verbose lock tar:///Users/craig/.npm/mojo-models/0.1.6/package /Users/craig/.npm/c86a130a-ig-npm-mojo-models-0-1-6-package.lock
+72 silly lockFile 5c0a6143-pm-mojo-models-0-1-6-package-tgz tar:///Users/craig/.npm/mojo-models/0.1.6/package.tgz
+73 verbose lock tar:///Users/craig/.npm/mojo-models/0.1.6/package.tgz /Users/craig/.npm/5c0a6143-pm-mojo-models-0-1-6-package-tgz.lock
+74 silly gunzTarPerm modes [ '755', '644' ]
+75 silly gunzTarPerm extractEntry package.json
+76 silly gunzTarPerm extractEntry .npmignore
+77 silly gunzTarPerm extractEntry README.md
+78 silly gunzTarPerm extractEntry .travis.yml
+79 silly gunzTarPerm extractEntry benchmark/index.js
+80 silly gunzTarPerm extractEntry lib/index.js
+81 silly gunzTarPerm extractEntry lib/base/collection.js
+82 silly gunzTarPerm extractEntry lib/base/model.js
+83 silly gunzTarPerm extractEntry lib/decor/crud.js
+84 silly gunzTarPerm extractEntry lib/decor/index.js
+85 silly gunzTarPerm extractEntry lib/decor/virtuals.js
+86 silly gunzTarPerm extractEntry lib/decor/utils/memoize.js
+87 silly gunzTarPerm extractEntry makefile
+88 silly gunzTarPerm extractEntry test/bindings-test.js
+89 silly gunzTarPerm extractEntry test/collection-crud-test.js
+90 silly gunzTarPerm extractEntry test/collection-test.js
+91 silly gunzTarPerm extractEntry test/model-load-test.js
+92 silly gunzTarPerm extractEntry test/model-persist-test.js
+93 silly gunzTarPerm extractEntry test/model-remove-test.js
+94 silly gunzTarPerm extractEntry test/model-save-test.js
+95 silly gunzTarPerm extractEntry test/model-test.js
+96 silly gunzTarPerm extractEntry test/model-virtuals-test.js
+97 silly lockFile c86a130a-ig-npm-mojo-models-0-1-6-package tar:///Users/craig/.npm/mojo-models/0.1.6/package
+98 silly lockFile c86a130a-ig-npm-mojo-models-0-1-6-package tar:///Users/craig/.npm/mojo-models/0.1.6/package
+99 silly lockFile 5c0a6143-pm-mojo-models-0-1-6-package-tgz tar:///Users/craig/.npm/mojo-models/0.1.6/package.tgz
+100 silly lockFile 5c0a6143-pm-mojo-models-0-1-6-package-tgz tar:///Users/craig/.npm/mojo-models/0.1.6/package.tgz
+101 verbose chmod /Users/craig/.npm/mojo-models/0.1.6/package.tgz 644
+102 verbose chown /Users/craig/.npm/mojo-models/0.1.6/package.tgz [ 501, 20 ]
+103 silly lockFile 3a52ce78- .
+104 silly lockFile 3a52ce78- .
+105 silly publish { name: 'mojo-models',
+105 silly publish   version: '0.1.6',
+105 silly publish   description: 'mojo-models ===========',
+105 silly publish   main: './lib/index.js',
+105 silly publish   scripts: { test: 'mocha' },
+105 silly publish   repository: { type: 'git', url: 'https://github.com/classdojo/mojo-models' },
+105 silly publish   author: '',
+105 silly publish   license: 'ISC',
+105 silly publish   bugs: { url: 'https://github.com/classdojo/mojo-models/issues' },
+105 silly publish   homepage: 'https://github.com/classdojo/mojo-models',
+105 silly publish   devDependencies:
+105 silly publish    { 'expect.js': '^0.3.1',
+105 silly publish      mocha: '^1.20.1',
+105 silly publish      'mojo-application': '0.0.8',
+105 silly publish      benchmark: '^1.0.0' },
+105 silly publish   dependencies:
+105 silly publish    { bindable: '0.5.x',
+105 silly publish      frills: '0.0.x',
+105 silly publish      'mojo-registered-classes': '0.0.x',
+105 silly publish      lodash: '2.4.1',
+105 silly publish      janitorjs: '0.0.x',
+105 silly publish      'bindable-decor-bindings': '0.1.x' },
+105 silly publish   readme: '## Mojo Models [![Build Status](https://travis-ci.org/classdojo/mojo-models.svg)](https://travis-ci.org/classdojo/mojo-models)\n\n```javascript\nvar models = require("mojo-models");\n\nvar User = models.Base.extend({\n  bindings: {\n    "firstName, lastName": {\n      "fullName": {\n        "map": function (firstName, lastName) {\n          return firstName + " " + lastName;\n        }\n      }\n    }\n  },\n  deserialize: function (data) {\n    return {\n      firstName : data.first_name,\n      lastName  : data.last_name\n    };\n  }\n});\n\nvar u = new User({ \n  data: {\n    first_name : "Jon",\n    last_name  : "Smith"\n  }\n});\n\nconsole.log(u.data); // { first_name: "Jon", last_name: "Smith" }\nconsole.log(u.firstName); // Jon\nconsole.log(u.lastName); // Smith\n```',
+105 silly publish   readmeFilename: 'README.md',
+105 silly publish   _id: 'mojo-models@0.1.6',
+105 silly publish   dist: { shasum: '49ffbcfcd3351847cbc9692d6c4a996377e1efc2' },
+105 silly publish   _from: '.' }
+106 verbose url raw mojo-models
+107 verbose url resolving [ 'http://registry.npmjs.org/', './mojo-models' ]
+108 verbose url resolved http://registry.npmjs.org/mojo-models
+109 info trying registry request attempt 1 at 21:09:32
+110 http PUT http://registry.npmjs.org/mojo-models
+111 http 403 http://registry.npmjs.org/mojo-models
+112 error publish Failed PUT 403
+113 error Error: forbidden cannot modify pre-existing version: 0.1.6
+113 error old={"name":"mojo-models","version":"0.1.6","description":"mojo-models ===========","main":"./lib/index.js","scripts":{"test":"mocha"},"repository":{"type":"git","url":"https://github.com/classdojo/mojo-models"},"author":"","license":"ISC","bugs":{"url":"https://github.com/classdojo/mojo-models/issues"},"homepage":"https://github.com/classdojo/mojo-models","devDependencies":{"expect.js":"^0.3.1","mocha":"^1.20.1","mojo-application":"0.0.8","benchmark":"^1.0.0"},"dependencies":{"bindable":"0.5.x","frills":"0.0.x","mojo-registered-classes":"0.0.x","lodash":"2.4.1","janitorjs":"0.0.x","bindable-decor-bindings":"0.1.x"},"_id":"mojo-models@0.1.6","dist":{"shasum":"49ffbcfcd3351847cbc9692d6c4a996377e1efc2","tarball":"http://registry.npmjs.org/mojo-models/-/mojo-models-0.1.6.tgz"},"_from":".","_npmVersion":"1.4.3","_npmUser":{"name":"architectd","email":"craig.j.condon@gmail.com"},"maintainers":[{"name":"architectd","email":"craig.j.condon@gmail.com"}]}
+113 error new={"name":"mojo-models","version":"0.1.6","description":"mojo-models ===========","main":"./lib/index.js","scripts":{"test":"mocha"},"repository":{"type":"git","url":"https://github.com/classdojo/mojo-models"},"author":"","license":"ISC","bugs":{"url":"https://github.com/classdojo/mojo-models/issues"},"homepage":"https://github.com/classdojo/mojo-models","devDependencies":{"expect.js":"^0.3.1","mocha":"^1.20.1","mojo-application":"0.0.8","benchmark":"^1.0.0"},"dependencies":{"bindable":"0.5.x","frills":"0.0.x","mojo-registered-classes":"0.0.x","lodash":"2.4.1","janitorjs":"0.0.x","bindable-decor-bindings":"0.1.x"},"readme":"## Mojo Models [![Build Status](https://travis-ci.org/classdojo/mojo-models.svg)](https://travis-ci.org/classdojo/mojo-models)\u000a\u000a```javascript\u000avar models = require(\"mojo-models\");\u000a\u000avar User = models.Base.extend({\u000a  bindings: {\u000a    \"firstName, lastName\": {\u000a      \"fullName\": {\u000a        \"map\": function (firstName, lastName) {\u000a          return firstName + \" \" + lastName;\u000a        }\u000a      }\u000a    }\u000a  },\u000a  deserialize: function (data) {\u000a    return {\u000a      firstName : data.first_name,\u000a      lastName  : data.last_name\u000a    };\u000a  }\u000a});\u000a\u000avar u = new User({ \u000a  data: {\u000a    first_name : \"Jon\",\u000a    last_name  : \"Smith\"\u000a  }\u000a});\u000a\u000aconsole.log(u.data); // { first_name: \"Jon\", last_name: \"Smith\" }\u000aconsole.log(u.firstName); // Jon\u000aconsole.log(u.lastName); // Smith\u000a```","readmeFilename":"README.md","_id":"mojo-models@0.1.6","dist":{"shasum":"49ffbcfcd3351847cbc9692d6c4a996377e1efc2","tarball":"http://registry.npmjs.org/mojo-models/-/mojo-models-0.1.6.tgz"},"_from":".","_npmVersion":"1.4.3","_npmUser":{"name":"architectd","email":"craig.j.condon@gmail.com"},"maintainers":[{"name":"architectd","email":"craig.j.condon@gmail.com"}]}: mojo-models
+113 error     at RegClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:237:14)
+113 error     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:123:22)
+113 error     at Request.EventEmitter.emit (events.js:98:17)
+113 error     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:893:14)
+113 error     at Request.EventEmitter.emit (events.js:117:20)
+113 error     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:844:12)
+113 error     at IncomingMessage.EventEmitter.emit (events.js:117:20)
+113 error     at _stream_readable.js:920:16
+113 error     at process._tickCallback (node.js:415:13)
+114 error If you need help, you may report this *entire* log,
+114 error including the npm and node versions, at:
+114 error     <http://github.com/npm/npm/issues>
+115 error System Darwin 13.2.0
+116 error command "node" "/usr/local/bin/npm" "publish"
+117 error cwd /Users/craig/Developer/Public/mojo-models
+118 error node -v v0.10.26
+119 error npm -v 1.4.3
+120 verbose exit [ 1, true ]
