@@ -125,6 +125,22 @@ describe("model-load#", function () {
     });
   });
 
+  it("can reload without a callback", function () {
+    var i = 0;
+    var Model = models.Base.extend({
+      persist: {
+        load: function (complete) {
+          i++;
+          complete();
+        }
+      }
+    });
+
+    var m = new Model({_id:"abba"}, app);
+    m.load();
+    m.reload();
+  });
+
   it("returns model on load", function (next) {
     var Model = models.Base.extend({
       persist: {
