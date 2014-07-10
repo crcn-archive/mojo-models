@@ -51,6 +51,25 @@ describe("model#", function () {
     expect(i).to.be(1);
   });
 
+  it("properly deserializes & serializes values", function () {
+
+    var Model = models.Base.extend({
+      deserialize: function (data) {
+        return {
+          first: "A",
+          last: "B",
+          und: void 0
+        }
+      }
+    });
+
+    var m = new Model({ data: {} }, app);
+    var k = m.serialize();
+    expect(k.first).to.be("A");
+    expect(k.last).to.be("B");
+
+  });
+
   it("calls deserialize when 'data' changes", function () {
     var Model = models.Base.extend({
       deserialize: function (data) {
