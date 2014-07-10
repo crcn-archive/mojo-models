@@ -23,17 +23,20 @@ describe("model-persist#", function () {
     var i = 0;
     var m, Model = models.Base.extend({
       persist: {
-        load: function () {
+        load: function (next) {
           expect(this).to.be(m);
           i++;
+          next();
         },
-        save: function () {
+        save: function (next) {
           expect(this).to.be(m);
           i++;
+          next();
         },
-        remove: function () {
+        remove: function (next) {
           expect(this).to.be(m);
           i++;
+          next();
         }
       }
     });
