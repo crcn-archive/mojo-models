@@ -150,6 +150,50 @@ describe("collection#", function () {
     expect(c.at(0)).to.be(model);
   }); 
 
+  it("emits didUpdate when a model is saved", function (next) {
+    var Model = models.Base.extend({
+      persist: {
+        save: function (complete) {
+          complete(null, { _id: "blah" });
+        }
+      }
+    });
+    var c = new models.Collection({
+      createModel: function (options) {
+        return new Model({ data: options.data }, this.application);
+      }
+    }, app);
+
+    c.once("didUpdate", function() { next(); });
+
+    c.create().save();
+  });
+
+  it("emits didUpdate when a model is removed", function (next) {
+    var Model = models.Base.extend({
+      persist: {
+        save: function (complete) {
+          complete(null, { _id: "blah" });
+        },
+        remove: function(complete) {
+          complete();
+        }
+      }
+    });
+    var c = new models.Collection({
+      createModel: function (options) {
+        return new Model({ data: options.data }, this.application);
+      }
+    }, app);
+
+    var m = c.create();
+    m.save();
+
+    c.once("didUpdate", function() { next(); });
+
+    m.remove();
+  });
+
   it("removes a model if .dispose() is called on a model", function () {
     var c = new models.Collection(null, app);
     var m = c.create();
