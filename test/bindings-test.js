@@ -29,4 +29,25 @@ describe("model-bindings#", function () {
       next();
     }, 100);
   });
+
+
+  it("adds bindings after crud methods", function () {
+
+    var i = 0;
+
+    var Model = models.Base.extend({
+      bindings: {
+        "firstName": function () {
+          expect(this.load).not.to.be(void 0);
+          i++;
+        }
+      },
+      persist: {
+        load: function(){}
+      }
+    });
+
+    new Model({ firstName: "abba" }, app);
+    expect(i).to.be(1);
+  });
 });
