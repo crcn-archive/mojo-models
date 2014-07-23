@@ -2,6 +2,11 @@ var models  = require(".."),
 Application = require("mojo-application"),
 expect      = require("expect.js");
 
+var async = require("async");
+async.setImmediate = async.nextTick = function (next) {
+  next();
+}
+
 describe("model-bindings#", function () {
 
   var app = new Application();

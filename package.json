@@ -29,7 +29,7 @@
     "lodash": "2.4.1",
     "janitorjs": "0.0.x",
     "bindable-decor-bindings": "0.1.x",
-    "tq": "0.2.x",
-    "hurryup": "0.0.x"
+    "hurryup": "0.0.x",
+    "async": "0.7.x"
   }
 }
