@@ -85,7 +85,7 @@ describe("model-virtuals#", function () {
     }).now();
   });
 
-  it("calls load on a model if a property doesn't exist", function () {
+  xit("calls load on a model if a property doesn't exist", function () {
 
     var i = 0;
 
@@ -106,7 +106,7 @@ describe("model-virtuals#", function () {
     expect(i).to.be(1);
   });
 
-  it("doesn't call load more than once", function () {
+  xit("doesn't call load more than once", function () {
     var i = 0;
 
     var Model = models.Base.extend({
@@ -127,7 +127,7 @@ describe("model-virtuals#", function () {
     expect(i).to.be(1);
   });
 
-  it("calls load if a property still doesn't exist", function () {
+  xit("calls load if a property still doesn't exist", function () {
     var i = 0;
 
     var Model = models.Base.extend({
