@@ -33,11 +33,14 @@ describe("collection#", function () {
   it("properly deserializes a collection", function () {
     var c = new models.Collection({
       deserialize: function (data) {
-        return data.map(function (n) { return n * 10 });
+        return {
+          value: data.map(function (n) { return n * 10 })
+        }
       },
       data: [1, 2, 3]
     }, app);
     expect(c.at(0).data).to.be(10);
+    expect(c.value[0]).to.be(10);
   });
 
   it("can override the createModel method", function () {
