@@ -61,6 +61,27 @@ describe("model-virtuals#", function () {
     var model = app.models.create("model");
     model.bind("name", function(){}).now();
     expect(i).to.be(1);
+  });
+
+  it("doesn't re-fetch virtual if a property on a virtual doesn't exist", function () {
+    var i = 0, model;
+    var Model = models.Base.extend({
+      virtuals: {
+        city: function (next) {
+          i++;
+          next(null, {
+            name: "San Francisco",
+            zip: 94103
+          })
+        }
+      }
+    });
+
+    app.models.register("model", Model);
+    var model = app.models.create("model");
+    model.bind("city.name", function(){}).now();
+    model.bind("city.state", function(){}).now();
+    expect(i).to.be(1);
   })
 
   it("recalls a virtual property if it doesn't exist", function (next) {
