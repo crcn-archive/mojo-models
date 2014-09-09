@@ -179,7 +179,26 @@ describe("model-virtuals#", function () {
     app.models.register("model", Model);
     var model = app.models.create("model");
     model.bind("name", function(){}).now();
-  })
+  });
+
+
+  it("calls virtual property * if no properties are found", function () {
+
+    var i = 0;
+    var Model = models.Base.extend({
+      virtuals: {
+        "*": function (property, next) {
+          expect(property).to.be("notFound");
+          i++;
+          next();
+        }
+      }
+    });
+
+    var model = new Model(void 0, app);
+    model.bind("notFound", function(){}).now();
+    expect(i).to.be(1);
+  });
 
 
 
