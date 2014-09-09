@@ -189,6 +189,7 @@ describe("model-virtuals#", function () {
       virtuals: {
         "*": function (property, next) {
           expect(property).to.be("notFound");
+          expect(model).to.be(this);
           i++;
           next();
         }
