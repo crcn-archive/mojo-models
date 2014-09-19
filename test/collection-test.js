@@ -283,6 +283,37 @@ describe("collection#", function () {
     c.set("data", [{_id:"model2"},{_id:"model3"}]);
   });
 
+  it("only emits didUpdate if data has changed", function (next) {
+
+    var i = 0;
+
+    var Model = models.Base.extend({
+      persist: {
+        save: function (complete) {
+          complete(null, { _id: "blah" });
+        },
+        remove: function(complete) {
+          complete();
+        }
+      }
+    });
+    var c = new models.Collection({
+      createModel: function (options) {
+        return new Model({ data: options.data }, this.application);
+      }
+    }, app);
+
+
+    c.on("didUpdate", function(data) { 
+      i++;
+      next();
+    });
+
+    c.set("data", [{_id:"model"}]);
+    c.set("data", [{_id:"model2"},{_id:"model3"}]);
+    c.set("data", [{_id:"model2"},{_id:"model3"}]);
+  });
+
   it("removes a model if .dispose() is called on a model", function () {
     var c = new models.Collection(null, app);
     var m = c.create();
@@ -290,6 +321,8 @@ describe("collection#", function () {
     m.dispose();
     expect(c.length).to.be(0);
   });
+
+
 
   it("can create a model from modelType string", function () {
 
