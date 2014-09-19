@@ -153,7 +153,7 @@ describe("collection#", function () {
     expect(c.at(0)).to.be(model);
   }); 
 
-  it("emits didUpdate when a model is saved", function (next) {
+  it("emits create didUpdate if a model is created", function (next) {
     var Model = models.Base.extend({
       persist: {
         save: function (complete) {
@@ -167,9 +167,38 @@ describe("collection#", function () {
       }
     }, app);
 
-    c.once("didUpdate", function() { next(); });
+    c.once("didUpdate", function(data) { 
+      expect(data.create[0]).to.be(c.at(0));
+      next(); 
+    });
 
     c.create().save();
+  });
+
+  it("emits save didUpdate if a model already exists", function (next) {
+    var Model = models.Base.extend({
+      persist: {
+        save: function (complete) {
+          complete(null, { _id: "blah" });
+        }
+      }
+    });
+    var c = new models.Collection({
+      createModel: function (options) {
+        return new Model({ data: options.data }, this.application);
+      }
+    }, app);
+
+    c.once("didUpdate", function(data) { 
+      expect(data.save).to.be(c.at(0));
+      next(); 
+    });
+
+    c.set("data", [{_id:"model"}]);
+
+    c.at(0).save();
+
+
   });
 
   it("emits didUpdate when a model is removed", function (next) {
@@ -192,9 +221,66 @@ describe("collection#", function () {
     var m = c.create();
     m.save();
 
-    c.once("didUpdate", function() { next(); });
+    c.once("didUpdate", function(data) { 
+      expect(data.remove[0]).to.be(m);
+      next(); 
+    });
 
     m.remove();
+  });
+
+  it("emits create didUpdate if model data is different", function (next) {
+    var Model = models.Base.extend({
+      persist: {
+        save: function (complete) {
+          complete(null, { _id: "blah" });
+        },
+        remove: function(complete) {
+          complete();
+        }
+      }
+    });
+    var c = new models.Collection({
+      createModel: function (options) {
+        return new Model({ data: options.data }, this.application);
+      }
+    }, app);
+
+
+    c.once("didUpdate", function(data) { 
+      expect(data.create[0]._id).to.be("model2");
+      next(); 
+    });
+
+    c.set("data", [{_id:"model"}]);
+    c.set("data", [{_id:"model"},{_id:"model2"}]);
+  });
+
+  it("emits remove didUpdate if model data is different", function (next) {
+    var Model = models.Base.extend({
+      persist: {
+        save: function (complete) {
+          complete(null, { _id: "blah" });
+        },
+        remove: function(complete) {
+          complete();
+        }
+      }
+    });
+    var c = new models.Collection({
+      createModel: function (options) {
+        return new Model({ data: options.data }, this.application);
+      }
+    }, app);
+
+
+    c.once("didUpdate", function(data) { 
+      expect(data.remove[0]._id).to.be("model");
+      next(); 
+    });
+
+    c.set("data", [{_id:"model"}]);
+    c.set("data", [{_id:"model2"},{_id:"model3"}]);
   });
 
   it("removes a model if .dispose() is called on a model", function () {
