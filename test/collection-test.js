@@ -229,6 +229,34 @@ describe("collection#", function () {
     m.remove();
   });
 
+  it("doesn't emit didUpdate if remove is not defined on model", function (next) {
+    var Model = models.Base.extend({
+      persist: {
+        save: function (complete) {
+          complete(null, { _id: "blah" });
+        }
+      }
+    });
+    var c = new models.Collection({
+      createModel: function (options) {
+        return new Model({ data: options.data }, this.application);
+      }
+    }, app);
+
+    var m = c.create();
+    m.save();
+
+    c.once("didUpdate", function(data) { 
+
+      // this will cause a double callback (what we want to validate this test)
+      next(); 
+    });
+
+    m.remove();
+
+    next();
+  });
+
 
 
   it("emits create didUpdate if model data is different", function (next) {
