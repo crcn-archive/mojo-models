@@ -101,7 +101,7 @@ var superagent = require("superagent");
 var Person = models.Base.extend({
   persist: {
     load: function (onLoad) {
-      superagent.del("/people/" + this._id).end(onLoad);
+      superagent.get("/people/" + this._id).end(onLoad);
     },
     remove: function (onRemove) {
       superagent.del("/people/" + this._id).end(onRemove);
@@ -113,13 +113,32 @@ var Person = models.Base.extend({
         superagent.post("/people").body(this.serialize()).end(onSave);
       }
     }
+  },
+  serialize: function () {
+    return {
+      firstName: this.firstName,
+      lastName: this.lastName
+    };
   }
 });
+
+var person = new Person({ _id: "person1" });
+
+person.set("firstName", "Craig");
+
+person.save(); // POST /people/person1 { firstName: "Craig" }
+person.load(); // loads the s 
+person.remove(); // removes the model
 ```
 
 #### persistable.load(onLoad)
 
-calls the `persist.load` function, and sets result to `data` to be deserialized on the model.
+calls the `persist.load` function, and sets result to `data` to be deserialized on the model. Note that
+load can be called only once. Use `reload` to reload the model
+
+#### persistable.reload(onReload)
+
+reloads the model
 
 #### persistable.save(onSave)
 
