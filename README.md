@@ -41,7 +41,7 @@ var Person = models.Base.extend({
       firstName: data.firstName,
       lastName: data.lastName,
       fullName: data.firstName + " " + data.lastName
-    }
+    };
   }
 });
 
