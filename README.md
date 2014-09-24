@@ -168,7 +168,7 @@ var Friends = models.Collection.extend({
   
     // executed when .load, or .reload is called
     load: function (complete) {
-      superagent.get("/person/" + this.friendee._id + "/friends".end(function (err, result) {
+      superagent.get("/person/" + this.friendee._id + "/friends").end(function (err, result) {
         complete(null, result);
       });  
     }
