@@ -80,12 +80,27 @@ serializes data. This is an alias to `toJSON`
 
 Inherits [bindable.Collection](https://github.com/mojo-js/bindable.js)
 
+#### model collection.createModel(options)
+
+creates a model
+
+### model collection.create(options)
+
+creates a new model, and adds to the collection immediately
+
+
 ## Built-in plugins
 
 #### virtuals
 
 Virtual properties all you to load external resources as they're needed. This is especially useful when
 data-binding models to views.
+
+
+```javascript
+var Friends
+var Person
+```
 
 #### bindings
 
