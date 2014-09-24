@@ -7,9 +7,17 @@
 
 ## API
 
-#### Model(properties, application)
+### Model(properties, application)
 
-#### Collection(properties, application)
+Creates a new model
+
+#### model.data
+
+#### model.deserialize(data)
+
+#### model.serialize()
+
+### Collection(properties, application)
 
 ## Built-in plugins
 
