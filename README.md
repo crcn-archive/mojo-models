@@ -12,13 +12,9 @@
 Creates a new model
 
 ```javascript
-
 var models = require("mojo-models");
-
 var model = new models.Base({ message: "Hello world!" });
-
 console.log(model.message);
-
 ```
 
 #### base.data
