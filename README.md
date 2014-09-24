@@ -7,15 +7,50 @@
 
 ## API
 
-### Model(properties, application)
+### Base(properties, application)
 
 Creates a new model
 
-#### model.data
+#### base.data
 
-#### model.deserialize(data)
+#### base.deserialize(data)
 
-#### model.serialize()
+deserializes data once `data` is set on the model
+
+```javascript
+
+var models = require("mojo-models");
+
+var Person = models.Base.extend({
+  deserialize: (data) {
+    return {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      fullName: data.firstName + " " + data.lastName
+    }
+  }
+});
+
+var person = new Person({
+  data: {
+    firstName: "Craig",
+    lastName: "Condon"
+  }
+});
+
+console.log(person.fullName); // Craig Condon
+
+person.set("data", { 
+  firstName: "A",
+  lastName: "B"
+});
+
+console.log(person.fullName); // A B
+```
+
+#### base.serialize()
+
+serializes data. This is an alias to `toJSON`
 
 ### Collection(properties, application)
 
