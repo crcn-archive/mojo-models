@@ -96,6 +96,26 @@ creates a new model, and adds to the collection immediately
 Persistence layer for models / collections. Also adds the methods `load`, `save`, and `remove`.
 
 ```javascript
+var superagent = require("superagent");
+
+var Person = models.Base.extend({
+  persist: {
+    load: function (onLoad) {
+      superagent.del("/people/" + this._id).end(onLoad);
+    },
+    remove: function (onRemove) {
+      superagent.del("/people/" + this._id).end(onRemove);
+    },
+    save: function (onSave) {
+      if (this._id) {
+        superagent.put("/people/" + this._id).body(this.serialize()).end(onSave);
+      } else {
+        superagent.post("/people").body(this.serialize()).end(onSave);
+      }
+    }
+  }
+});
+```
 
 #### persistable.load(onLoad)
 
