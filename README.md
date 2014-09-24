@@ -11,7 +11,26 @@
 
 Creates a new model
 
+```javascript
+
+var models = require("mojo-models");
+
+var model = new models.Base({ message: "Hello world!" });
+
+console.log(model.message);
+
+```
+
 #### base.data
+
+The raw data set on the model - this is usually transformed into something the model can 
+use via `deserialize`. 
+
+```javascript
+var model = new models.Base({ data: { message: "Hello world!" }});
+consol.log(model.message); // Hello world!
+console.log(model.data); // { message: "Hello world!" }
+```
 
 #### base.deserialize(data)
 
@@ -19,7 +38,6 @@ deserializes data once `data` is set on the model
 
 ```javascript
 
-var models = require("mojo-models");
 
 var Person = models.Base.extend({
   deserialize: (data) {
