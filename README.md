@@ -14,6 +14,8 @@ npm install mojo-models
 
 ### Base(properties[, application])
 
+Inherits [bindable.Object](https://github.com/mojo-js/bindable.js)
+
 base model constructor
 
 - `properties` - properties to set on the model
@@ -76,11 +78,34 @@ serializes data. This is an alias to `toJSON`
 
 ### Collection(properties[, application])
 
+Inherits [bindable.Collection](https://github.com/mojo-js/bindable.js)
+
 ## Built-in plugins
 
 #### virtuals
 
+Virtual properties all you to load external resources as they're needed. This is especially useful when
+data-binding models to views.
+
 #### bindings
+
+Bindings allow you to compute properties on models.
+
+```javascript
+
+var bindable = require("bindable");
+
+var Person = models.Base.extend({
+  bindings: {
+    "firstName, lastName": function (firstName, lastName) {
+      this.set("fullName", firstName + " "+ lastName);
+    }
+  }
+
+var person = new Person({ firstName: "A", lastName: "B" });
+console.log(person.fullName); // 
+document.body.appendChild(person.render());
+```
 
 #### persist
 
