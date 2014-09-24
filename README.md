@@ -104,10 +104,14 @@ data-binding models to views.
 var superagent = require("superagent");
 
 var Friends = models.Collection.extend({
+
+  // creates a new person for each item in .data
   createModel: function (options) {
     return new Person(options, this.application);
   },
   persist: {
+  
+    // executed when .load, or .reload is called
     load: function (complete) {
       superagent.get("/person/" + this.friendee._id + "/friends", funtion (err, result) {
         complete(null, result);
@@ -118,6 +122,8 @@ var Friends = models.Collection.extend({
 
 var Person = models.Base.extend({
   virtuals: {
+  
+    // triggered on bind()
     friends: function (onLoad) {
       new Friends({ friendee: this }).load(onLoad);
     }
@@ -128,9 +134,10 @@ var person = new Person({ _id: "person1" });
 
 console.log(person.get("friends")); // should be undefined
 
-// activates virtual property
+// activates virtual property, and calls /person/person1/friends API
 person.bind("friends", function (friends) {
   this.dispose(); // dispose the binding immediately
+  
 });
 
 ```
