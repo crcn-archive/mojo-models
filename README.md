@@ -1,34 +1,22 @@
 ## Mojo Models [![Build Status](https://travis-ci.org/classdojo/mojo-models.svg)](https://travis-ci.org/classdojo/mojo-models)
 
-```javascript
-var models = require("mojo-models");
+### Features
 
-var User = models.Base.extend({
-  bindings: {
-    "firstName, lastName": {
-      "fullName": {
-        "map": function (firstName, lastName) {
-          return firstName + " " + lastName;
-        }
-      }
-    }
-  },
-  deserialize: function (data) {
-    return {
-      firstName : data.first_name,
-      lastName  : data.last_name
-    };
-  }
-});
+- virtual properties allow you to load 
 
-var u = new User({ 
-  data: {
-    first_name : "Jon",
-    last_name  : "Smith"
-  }
-});
 
-console.log(u.data); // { first_name: "Jon", last_name: "Smith" }
-console.log(u.firstName); // Jon
-console.log(u.lastName); // Smith
-```
+## API
+
+#### Model(properties, application)
+
+#### Collection(properties, application)
+
+## Built-in plugins
+
+#### virtuals
+
+#### bindings
+
+#### persist
+
+## Application API
