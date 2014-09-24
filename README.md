@@ -1,15 +1,23 @@
 ## Mojo Models [![Build Status](https://travis-ci.org/classdojo/mojo-models.svg)](https://travis-ci.org/classdojo/mojo-models)
 
+### Installation
+
+```
+npm install mojo-models
+```
+
 ### Features
 
-- virtual properties allow you to load 
-
+- easy to extend. register your own custom plugins to extend the functionality of models.
 
 ## API
 
-### Base(properties, application)
+### Base(properties[, application])
 
-Creates a new model
+base model constructor
+
+- `properties` - properties to set on the model
+- `application` - (optional) mojo application
 
 ```javascript
 var models = require("mojo-models");
@@ -66,7 +74,7 @@ console.log(person.fullName); // A B
 
 serializes data. This is an alias to `toJSON`
 
-### Collection(properties, application)
+### Collection(properties[, application])
 
 ## Built-in plugins
 
