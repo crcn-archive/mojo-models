@@ -91,9 +91,17 @@ creates a new model, and adds to the collection immediately
 
 ## Built-in plugins
 
-#### persist
+### persist
 
-#### virtuals
+Persistence layer for models / collections. Also adds the methods `load`, `save`, and `remove`.
+
+#### persistable.load(onLoad)
+
+#### persistable.save(onSave)
+
+#### persistable.remove(onRemove)
+
+### virtuals
 
 Virtual properties all you to load external resources as they're needed. This is especially useful when
 data-binding models to views.
@@ -142,7 +150,7 @@ person.bind("friends", function (friends) {
 
 ```
 
-#### bindings
+### bindings
 
 Bindings allow you to compute properties on models.
 
