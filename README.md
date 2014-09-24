@@ -91,6 +91,8 @@ creates a new model, and adds to the collection immediately
 
 ## Built-in plugins
 
+#### persist
+
 #### virtuals
 
 Virtual properties all you to load external resources as they're needed. This is especially useful when
@@ -98,8 +100,39 @@ data-binding models to views.
 
 
 ```javascript
-var Friends
-var Person
+
+var superagent = require("superagent");
+
+var Friends = models.Collection.extend({
+  createModel: function (options) {
+    return new Person(options, this.application);
+  },
+  persist: {
+    load: function (complete) {
+      superagent.get("/person/" + this.friendee._id + "/friends", funtion (err, result) {
+        complete(null, result);
+      });  
+    }
+  }
+});
+
+var Person = models.Base.extend({
+  virtuals: {
+    friends: function (onLoad) {
+      new Friends({ friendee: this }).load(onLoad);
+    }
+  }
+});
+
+var person = new Person({ _id: "person1" });
+
+console.log(person.get("friends")); // should be undefined
+
+// activates virtual property
+person.bind("friends", function (friends) {
+  this.dispose(); // dispose the binding immediately
+});
+
 ```
 
 #### bindings
@@ -122,6 +155,5 @@ console.log(person.fullName); //
 document.body.appendChild(person.render());
 ```
 
-#### persist
 
 ## Application API
