@@ -84,7 +84,7 @@ Inherits [bindable.Collection](https://github.com/mojo-js/bindable.js)
 
 creates a model
 
-### model collection.create(options)
+#### model collection.create(options)
 
 creates a new model, and adds to the collection immediately
 
