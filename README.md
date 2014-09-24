@@ -95,11 +95,19 @@ creates a new model, and adds to the collection immediately
 
 Persistence layer for models / collections. Also adds the methods `load`, `save`, and `remove`.
 
+```javascript
+
 #### persistable.load(onLoad)
+
+calls the `persist.load` function, and sets result to `data` to be deserialized on the model.
 
 #### persistable.save(onSave)
 
+calls the `persist.save` function, and sets result to `data` to be deserialized on the model.
+
 #### persistable.remove(onRemove)
+
+removes the model
 
 ### virtuals
 
