@@ -21,7 +21,7 @@ npm install mojo-models
 
 ### Base(properties[, [application](https://github.com/mojo-js/mojo-application)])
 
-Inherits [bindable.Object](https://github.com/mojo-js/bindable.js)
+Extends [bindable.Object](https://github.com/mojo-js/bindable.js)
 
 base model constructor
 
@@ -87,7 +87,7 @@ serializes data. This is an alias to `toJSON`
 
 ### Collection(properties[, [application](https://github.com/mojo-js/mojo-application)])
 
-Inherits [bindable.Collection](https://github.com/mojo-js/bindable.js)
+Extends [bindable.Collection](https://github.com/mojo-js/bindable.js)
 
 #### collection.data
 
