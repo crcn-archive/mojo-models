@@ -17,6 +17,11 @@ npm install mojo-models
 - [loading models](http://requirebin.com/?gist=ef4c57b8004501d15447)
 - [collections](http://requirebin.com/?gist=516f703d3eeb719940a1)
 
+
+### See Also
+
+- [mojo-application](https://github.com/mojo-js/mojo-application) - entry point to application
+
 ## API
 
 ### Base(properties[, [application](https://github.com/mojo-js/mojo-application)])
