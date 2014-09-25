@@ -14,6 +14,7 @@ npm install mojo-models
 
 - https://github.com/mojo-js/mojo-todomvc-example
 - [deserializing data](http://requirebin.com/?gist=d174776852d4f1a13bc4)
+- [loading models](http://requirebin.com/?gist=516f703d3eeb719940a1)
 
 ## API
 
