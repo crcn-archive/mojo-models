@@ -20,6 +20,7 @@ npm install mojo-models
 
 ### See Also
 
+- [bindable.js](https://github.com/classdojo/bindable.js) - base class for models & collections
 - [mojo-application](https://github.com/mojo-js/mojo-application) - entry point to application
 
 ## API
