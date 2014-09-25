@@ -148,6 +148,16 @@ calls the `persist.save` function, and sets result to `data` to be deserialized 
 
 removes the model
 
+#### persistable events
+
+- `willSave` - emitted when the model is about to be saved
+- `didSave` - emitted when the model has been saved
+- `willRemove` - emitted when the model is about to be removed
+- `didRemove` - emitted when the model has been removed
+
+
+removes the model
+
 ### virtuals
 
 Virtual properties all you to load external resources as they're needed. This is especially useful when
