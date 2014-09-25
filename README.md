@@ -323,38 +323,10 @@ var hello = application.views.create("person", { name: "Craig" });
 console.log(hello.name); // Craig
 ```
 
-#### application.views.decorator(decorator)
+#### application.models.decorator(decorator)
 
-Registers a model plugin. This is useful if you want to extend the functionality for each model. 
-
-```javascript
-
-var handlebars = require("handlebars");
-
-var HelloView = views.Base.extend({
-  handlebars: "<div> hello {{name}}!</div>"
-});
-
-application.views.register("hello", HelloView);
-
-application.views.decorator({
-  getOptions: function (view) {
-    return view.handlebars;
-  },  
-  decorate: function (view, templateSource) {
-    var template = handlebars.compile(templateSource);
-
-    function render () {
-      view.section.replaceChildNodes(template(view));
-    }
-
-    render();
-
-    // render whenever the view changes
-    view.on("change", render);
-  }
-})
-```
+Registers a model plugin. This is useful if you want to extend the functionality for each model. The implementation
+is idential to [mojo view decorators](/mojo-js/mojo-views#applicationviewsdecoratordecorator).
 
 ## Unit Testing
 
