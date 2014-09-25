@@ -80,6 +80,24 @@ serializes data. This is an alias to `toJSON`
 
 Inherits [bindable.Collection](https://github.com/mojo-js/bindable.js)
 
+#### collection.data
+
+the raw source for the collection. Should be an array.
+
+```javascript
+var Models = Collection.extend({
+  createModel: function (properties) {
+    return new models.Base(properties, this.application);
+  }
+});
+
+var models = new Models();
+
+models.set("data", [{ name: "a" }, { name: "b" }]);
+
+console.log(models.length); // 2
+```
+
 #### model collection.createModel(options)
 
 Creates a model. This method is usually defined when extending the base collection. It's also 
