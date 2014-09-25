@@ -104,7 +104,7 @@ console.log(friends.length); // 1
 
 #### model collection.create(options)
 
-creates a new model, and adds to the collection immediately
+creates a new model, and adds to the collection immediately. See example above.
 
 
 ## Built-in plugins
@@ -247,3 +247,9 @@ document.body.appendChild(person.render());
 
 
 ## Application API
+
+TODO
+
+## Unit Testing
+
+TODO
