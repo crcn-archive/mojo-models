@@ -13,6 +13,7 @@ npm install mojo-models
 ### Examples
 
 - https://github.com/mojo-js/mojo-todomvc-example
+- [deserializing data](http://requirebin.com/?gist=d174776852d4f1a13bc4)
 
 ## API
 
@@ -45,6 +46,8 @@ console.log(model.data); // { message: "Hello world!" }
 #### base.deserialize(data)
 
 deserializes data once `data` is set on the model
+
+Example: http://requirebin.com/?gist=d174776852d4f1a13bc4
 
 ```javascript
 
