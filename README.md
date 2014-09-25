@@ -82,7 +82,25 @@ Inherits [bindable.Collection](https://github.com/mojo-js/bindable.js)
 
 #### model collection.createModel(options)
 
-creates a model
+Creates a model. This method is usually defined when extending the base collection. It's also 
+called when deserializing each item in `data`.
+
+```javascript
+var Friend = models.Base.extend({
+});
+
+var Friends = models.Collection.extend({
+  createModel: function (properties) {
+    return new Friend(properties, this.application);
+  }
+});
+
+var friends = new Friends();
+var friend = friends.create({ firstName: "John" });
+
+console.log(friend.firstName); // John
+console.log(friends.length); // 1
+```
 
 #### model collection.create(options)
 
