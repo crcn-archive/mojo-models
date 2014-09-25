@@ -266,8 +266,133 @@ document.body.appendChild(person.render());
 
 ## Application API
 
-TODO
+#### views(application)
+
+registers `mojo-models` to the [mojo-application](https://github.com/mojo-js/mojo-application), which will add a few properties
+/ methods onto the application.
+
+```javascript
+var Application = require("mojo-application"),
+models         = require("mojo-models");
+
+var app = new Application();
+app.use(models);
+```
+
+#### application.models.register(modelNameOrClasses[, class])
+
+Registers a model class that's accessible anywhere in the application. 
+
+`modelNameOrClasses` - view name to register, or an object of classses to register
+`class` - the class to register
+
+```javascript
+
+var app = new Application();
+
+app.use(require("mojo-models"));
+
+// register views one at a time
+app.models.register("person", Person);
+
+// or register multiple views at a time
+app.models.register({
+  person: Person,
+  friends: Friends
+});
+
+var person = app.models.create("person");
+```
+
+#### application.models.create(modelName, properties)
+
+Creates a new, registered component
+
+- `modelName` - the registered model component name
+- `properties` - the properties to assign to the created model. 
+
+```javascript
+var Person = views.Base.extend({
+  
+});
+
+application.models.register("person", Person);
+
+var hello = application.views.create("person", { name: "Craig" });
+
+console.log(hello.name); // Craig
+```
+
+#### application.views.decorator(decorator)
+
+Registers a model plugin. This is useful if you want to extend the functionality for each model. 
+
+```javascript
+
+var handlebars = require("handlebars");
+
+var HelloView = views.Base.extend({
+  handlebars: "<div> hello {{name}}!</div>"
+});
+
+application.views.register("hello", HelloView);
+
+application.views.decorator({
+  getOptions: function (view) {
+    return view.handlebars;
+  },  
+  decorate: function (view, templateSource) {
+    var template = handlebars.compile(templateSource);
+
+    function render () {
+      view.section.replaceChildNodes(template(view));
+    }
+
+    render();
+
+    // render whenever the view changes
+    view.on("change", render);
+  }
+})
+```
 
 ## Unit Testing
 
-TODO
+Unit tests are very easy to write for mojo-models. Here's a basic example using `mocha`, and `expect.js`:
+
+View:
+
+```javascript
+var models = require("mojo-models");
+module.exports = models.Base.extend({
+    bindings: {
+        "firstName, lastName": function (firstName, lastName) {
+            this.set("fullName", firstName + " " + lastName);
+        }
+    }
+});
+```
+
+Unit Test:
+
+```javascript
+var Person = require("./person"),
+expect = require("expect.js");
+
+describe(__filename + "#", function() {
+
+    var model;
+    
+    beforeEach(function() {
+        model = new Person();
+    });
+    
+    it("properly computes first / last name when changed", function () {
+        model.setProperties({
+          firstName: "A",
+          lastName: "B"
+        });
+        expect(model.get("fullName")).to.be("A B");
+    });
+});
+```
