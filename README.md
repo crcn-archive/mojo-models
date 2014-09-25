@@ -326,7 +326,7 @@ console.log(hello.name); // Craig
 #### application.models.decorator(decorator)
 
 Registers a model plugin. This is useful if you want to extend the functionality for each model. The implementation
-is idential to [mojo view decorators](/mojo-js/mojo-views#applicationviewsdecoratordecorator).
+is idential to [mojo view decorators](https://github.com/mojo-js/mojo-views#applicationviewsdecoratordecorator).
 
 ## Unit Testing
 
