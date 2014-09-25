@@ -10,9 +10,13 @@ npm install mojo-models
 
 - easy to extend. register your own custom plugins to extend the functionality of models.
 
+### Examples
+
+- https://github.com/mojo-js/mojo-todomvc-example
+
 ## API
 
-### Base(properties[, application])
+### Base(properties[, [application](https://github.com/mojo-js/mojo-application)])
 
 Inherits [bindable.Object](https://github.com/mojo-js/bindable.js)
 
@@ -76,37 +80,53 @@ console.log(person.fullName); // A B
 
 serializes data. This is an alias to `toJSON`
 
-### Collection(properties[, application])
+### Collection(properties[, [application](https://github.com/mojo-js/mojo-application)])
 
 Inherits [bindable.Collection](https://github.com/mojo-js/bindable.js)
 
-#### model collection.createModel(properties)
+#### collection.data
 
-creates a model. This is usually defined when extending the base collection. For example:
+the raw source for the collection. Should be an array.
 
 ```javascript
-
-var Person = Model.extend({
-  
+var Models = Collection.extend({
+  createModel: function (properties) {
+    return new models.Base(properties, this.application);
+  }
 });
 
-var Friends = Collection.extend({
+var models = new Models();
+
+models.set("data", [{ name: "a" }, { name: "b" }]);
+
+console.log(models.length); // 2
+```
+
+#### model collection.createModel(options)
+
+Creates a model. This method is usually defined when extending the base collection. It's also 
+called when deserializing each item in `data`.
+
+```javascript
+var Friend = models.Base.extend({
+});
+
+var Friends = models.Collection.extend({
   createModel: function (properties) {
-    return new Person(properties, application);
+    return new Friend(properties, this.application);
   }
 });
 
 var friends = new Friends();
+var friend = friends.create({ firstName: "John" });
 
-var friend = friends.create({ firstName: "A", lastName: "B" });
-
-console.log(friend.firstName); // A
+console.log(friend.firstName); // John
 console.log(friends.length); // 1
 ```
 
 #### model collection.create(properties)
 
-creates a new model, and adds to the collection immediately
+creates a new model, and adds to the collection immediately. See example above.
 
 
 ## Built-in plugins
@@ -249,3 +269,106 @@ document.body.appendChild(person.render());
 
 
 ## Application API
+
+#### views(application)
+
+registers `mojo-models` to the [mojo-application](https://github.com/mojo-js/mojo-application), which will add a few properties
+/ methods onto the application.
+
+```javascript
+var Application = require("mojo-application"),
+models         = require("mojo-models");
+
+var app = new Application();
+app.use(models);
+```
+
+#### application.models.register(modelNameOrClasses[, class])
+
+Registers a model class that's accessible anywhere in the application. 
+
+`modelNameOrClasses` - view name to register, or an object of classses to register
+`class` - the class to register
+
+```javascript
+
+var app = new Application();
+
+app.use(require("mojo-models"));
+
+// register views one at a time
+app.models.register("person", Person);
+
+// or register multiple views at a time
+app.models.register({
+  person: Person,
+  friends: Friends
+});
+
+var person = app.models.create("person");
+```
+
+#### application.models.create(modelName, properties)
+
+Creates a new, registered component
+
+- `modelName` - the registered model component name
+- `properties` - the properties to assign to the created model. 
+
+```javascript
+var Person = views.Base.extend({
+  
+});
+
+application.models.register("person", Person);
+
+var hello = application.views.create("person", { name: "Craig" });
+
+console.log(hello.name); // Craig
+```
+
+#### application.models.decorator(decorator)
+
+Registers a model plugin. This is useful if you want to extend the functionality for each model. The implementation
+is idential to [mojo view decorators](https://github.com/mojo-js/mojo-views#applicationviewsdecoratordecorator).
+
+## Unit Testing
+
+Unit tests are very easy to write for mojo-models. Here's a basic example using `mocha`, and `expect.js`:
+
+View:
+
+```javascript
+var models = require("mojo-models");
+module.exports = models.Base.extend({
+    bindings: {
+        "firstName, lastName": function (firstName, lastName) {
+            this.set("fullName", firstName + " " + lastName);
+        }
+    }
+});
+```
+
+Unit Test:
+
+```javascript
+var Person = require("./person"),
+expect = require("expect.js");
+
+describe(__filename + "#", function() {
+
+    var model;
+    
+    beforeEach(function() {
+        model = new Person();
+    });
+    
+    it("properly computes first / last name when changed", function () {
+        model.setProperties({
+          firstName: "A",
+          lastName: "B"
+        });
+        expect(model.get("fullName")).to.be("A B");
+    });
+});
+```
