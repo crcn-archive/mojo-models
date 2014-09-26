@@ -1,4 +1,6 @@
-## Mojo Models [![Build Status](https://travis-ci.org/classdojo/mojo-models.svg)](https://travis-ci.org/classdojo/mojo-models)
+[![Build Status](https://travis-ci.org/classdojo/mojo-models.svg)](https://travis-ci.org/classdojo/mojo-models)
+
+Models, like views, are plugin-based, meaning you can customize how models behave based on the properties defined in the class. You can also create your own plugins for models. By default, mojo-models come with a few: persist, virtuals, and bindings. 
 
 ### Installation
 
