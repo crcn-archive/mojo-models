@@ -327,13 +327,13 @@ Creates a new, registered component
 - `properties` - the properties to assign to the created model. 
 
 ```javascript
-var Person = views.Base.extend({
+var Person = models.Base.extend({
   
 });
 
 application.models.register("person", Person);
 
-var hello = application.views.create("person", { name: "Craig" });
+var hello = application.models.create("person", { name: "Craig" });
 
 console.log(hello.name); // Craig
 ```
