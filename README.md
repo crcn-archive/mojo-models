@@ -1,4 +1,6 @@
-## Mojo Models [![Build Status](https://travis-ci.org/classdojo/mojo-models.svg)](https://travis-ci.org/classdojo/mojo-models)
+[![Build Status](https://travis-ci.org/classdojo/mojo-models.svg)](https://travis-ci.org/classdojo/mojo-models)
+
+Models, like views, are plugin-based, meaning you can customize how models behave based on the properties defined in the class. You can also create your own plugins for models. By default, mojo-models come with a few: persist, virtuals, and bindings. 
 
 ### Installation
 
@@ -13,12 +15,21 @@ npm install mojo-models
 ### Examples
 
 - https://github.com/mojo-js/mojo-todomvc-example
+- [deserializing data](http://requirebin.com/?gist=d174776852d4f1a13bc4)
+- [loading models](http://requirebin.com/?gist=ef4c57b8004501d15447)
+- [collections](http://requirebin.com/?gist=516f703d3eeb719940a1)
+
+
+### See Also
+
+- [bindable.js](https://github.com/classdojo/bindable.js) - base class for models & collections
+- [mojo-application](https://github.com/mojo-js/mojo-application) - entry point to application
 
 ## API
 
 ### Base(properties[, [application](https://github.com/mojo-js/mojo-application)])
 
-Inherits [bindable.Object](https://github.com/mojo-js/bindable.js)
+Extends [bindable.Object](https://github.com/mojo-js/bindable.js)
 
 base model constructor
 
@@ -45,6 +56,8 @@ console.log(model.data); // { message: "Hello world!" }
 #### base.deserialize(data)
 
 deserializes data once `data` is set on the model
+
+Example: http://requirebin.com/?gist=d174776852d4f1a13bc4
 
 ```javascript
 
@@ -82,7 +95,7 @@ serializes data. This is an alias to `toJSON`
 
 ### Collection(properties[, [application](https://github.com/mojo-js/mojo-application)])
 
-Inherits [bindable.Collection](https://github.com/mojo-js/bindable.js)
+Extends [bindable.Collection](https://github.com/mojo-js/bindable.js)
 
 #### collection.data
 
@@ -316,13 +329,13 @@ Creates a new, registered component
 - `properties` - the properties to assign to the created model. 
 
 ```javascript
-var Person = views.Base.extend({
+var Person = models.Base.extend({
   
 });
 
 application.models.register("person", Person);
 
-var hello = application.views.create("person", { name: "Craig" });
+var hello = application.models.create("person", { name: "Craig" });
 
 console.log(hello.name); // Craig
 ```
