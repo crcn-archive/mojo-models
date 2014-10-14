@@ -1,6 +1,6 @@
 {
   "name": "mojo-models",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "description": "mojo-models ===========",
   "main": "./lib/index.js",
   "scripts": {
@@ -25,7 +25,7 @@
     "bindable": "0.6.x",
     "frills": "0.0.x",
     "mojo-application": "0.1.x",
-    "mojo-registered-classes": "0.0.x",
+    "mojo-registered-classes": "0.1.x",
     "lodash": "2.4.1",
     "janitorjs": "0.0.x",
     "bindable-decor-bindings": "0.1.x",
