@@ -1,6 +1,6 @@
 {
   "name": "mojo-models",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "mojo-models ===========",
   "main": "./lib/index.js",
   "scripts": {
@@ -26,6 +26,7 @@
     "bindable-collection": "0.0.x",
     "bindable-decor-bindings": "0.1.x",
     "bindable-object": "0.0.x",
+    "fast-event-emitter": "0.0.2",
     "frills": "0.0.x",
     "hurryup": "0.0.x",
     "janitorjs": "0.0.x",
